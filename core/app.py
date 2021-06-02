@@ -9,6 +9,8 @@ from flask import Flask, jsonify, request
 from flask.wrappers import Request, Response
 from os import getcwd
 
+from werkzeug.wrappers import response
+
 app = Flask(__name__)
 
 
@@ -33,7 +35,11 @@ def preprocess_image(image, target_size):
 @app.route('/')
 @app.route('/index')
 def index():
-    return 'Hello world!'
+    response = {
+        "greetings": "Hello, World!"
+    }
+
+    return jsonify(response)
 
 @app.route("/predict/cxr/covid/", methods=["POST"])
 def predict():
