@@ -11,6 +11,7 @@ steps:
       [
         "run",
         "deploy",
+        "bias-server",
         "--image",
         "gcr.io/$PROJECT_ID/github.com/$PROJECT_ID/bias-server:${COMMIT_SHA}",
         "--region",
