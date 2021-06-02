@@ -36,7 +36,7 @@ def preprocess_image(image, target_size):
 @app.route('/index')
 def index():
     response = {
-        "greetings": "Hello, World!"
+        "greetings": "Hello World!"
     }
 
     return jsonify(response)
