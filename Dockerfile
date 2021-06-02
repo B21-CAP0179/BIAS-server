@@ -1,9 +1,12 @@
-FROM python:3.6.13
+FROM python:3.7.10
 
-COPY requirements.txt /
-RUN pip3 install -r /requirements.txt
-
-COPY . /app
 WORKDIR /app
 
-ENTRYPOINT ["./gunicorn.sh"]
+COPY requirements.txt requirements.txt
+RUN pip3 install -r requirements.txt
+
+COPY . .
+
+ENV FLASK_APP=main
+
+ENTRYPOINT [ "./gunicorn.sh" ]
