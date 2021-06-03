@@ -23,9 +23,14 @@ def get_model(options):
     # Load your trained model
     model = tf.keras.models.load_model(MODEL_PATH)
 
-def preprocess_image(image, target_size):
-    if image.mode != 'RGB':
-        image = image.convert("RGB")
+def preprocess_image(image, target_size, mode):
+    '''
+    color model docs --> https://pillow.readthedocs.io/en/latest/handbook/concepts.html#concept-modes
+    '''
+    if image.mode != mode:
+        image = image.convert(mode)
+
+
     image = image.resize(target_size)
     image = img_to_array(image)
     image = np.expand_dims(image, axis=0)
@@ -47,7 +52,7 @@ def predict():
     encoded = message["image"]
     decoded = base64.b64decode(encoded)
     image = Image.open(io.BytesIO(decoded))
-    processed_image = preprocess_image(image, target_size=(150, 150))
+    processed_image = preprocess_image(image, target_size=(150, 150), mode="L")
 
     get_model("covid")
     prediction = model.predict(processed_image).tolist()
