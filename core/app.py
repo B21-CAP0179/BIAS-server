@@ -37,15 +37,6 @@ def preprocess_image(image, target_size, mode):
 
     return image
 
-@app.route('/')
-@app.route('/index')
-def index():
-    response = {
-        "greetings": "Hello World!!"
-    }
-
-    return jsonify(response)
-
 @app.route("/predict/cxr/covid/", methods=["POST"])
 def predict():
     message = request.get_json(force=True)
