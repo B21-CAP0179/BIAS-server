@@ -86,7 +86,8 @@ def predict():
                     label[0]: prediction[0][0],
                     label[1]: prediction[0][1]
                 }
-            }
+            },
+            "status" : "done"
         })
 
 
