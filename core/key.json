@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "peduli-lindungi-id",
+  "private_key_id": "2e7a66e6d84056f3ec93f91f0b0fa01a55116ba1",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDBSdHWAa4rtLo3\nzfSxh5E6tZvQZ0U9n17ppZNQ9UqiQrP9Qc37TjyONYnQihpR04oL9AVsVx6pLcot\njpWW8r0CJDbwQlW4qEVhz4voPBc0kKUMa/v2ZnpE9o0xI4+o+HqPI+sETEPF6VjA\ncZvBDAwDwXelQCC86SMtJ9K954yG+3Q7qLqEmmRijpo2o8XlvTzb847/4zWogzWa\nD1aQX3aaUYoKa8MlEOsiFqhBpFknDVQlBiwDoUmb3mMrcrPN49rRR+7DNFu/HwGm\n81EL2JP+1tstmW/R/M3ea74vGChaXFEb+SYGT1iqGzAxWGjM4wGH+OZYWkLKwJyY\n8ipHFZNpAgMBAAECggEAM5WycUV4iMSOcEdAl0KhgUQnpepxwbzvVTbxxoj4Vq6r\nn5r40Kl0ItXqBmRdGtp0fLUu31eu4KLOUvM7PBJjXBdzLBLgEsyh27VK1vt2i/pQ\neiy1jXCTECWmz+b4N7W868e/uKFr8v1QSOfpFA/VgwkWl90x/4jO8QWwSitqRzmM\nEOOiRwH+XH1N3VwaFYb0R9x71UspL8Lxj2NgMx+3MYjCAnrtqaSe9HT8ycTbYxRC\nPl/a4nqTL1rXWT/yK0TVgmcluiViD3hHNk6gYqlw/s9xRLytiWv9UDh5XsBQUpZb\nfmkzcJ894ftcexk6Mrx+78K/P3rfwVKWCZe7ncsIiwKBgQD7Tn9e7u66IxpV+5y/\nsfN/Q6pnYpwxsndZT3QnRd9UFLcLmbiU7qC/teItunnIXo9FZ2g20VKoE+mWtHHC\nTn8Xs9HVkspsOcCQmEzoi3OYbQMka3mjsFcNz9Ewzp+TptEVW2pS3DX7mnjp35tV\nNugyt9i1Bo4MhzLyGPxvNQ9MiwKBgQDE5e99Zna9xfJa3RGdVGtrGy0fes75cEgD\nC0hAwJxzrX774ub6IKel3QJs62q+kS+qv9cfzkviXVO2qZVK/y17uNU9vVFk/Q3X\nzehjBfSJDMKQ6bd+Wf2Hf5upzhLqHxrh32qJKjEJu2tLDCdN0zkvqLi4PFEbrHwi\nLhYphkXaWwKBgCadOykFIZ1sQ2Gu1bkGyNlnNknIdyOTvo70jG50aAptXGrl5dzM\nhdqvQd+w5YGKNg1+BB9YLpEw7hWACHLIyPKFaNqeQYg7n4EYRcj9lHd5WKBB+2DR\nea7fnc8YEKEJYtsbPs0YlRrh825MM3v2gds5MI0wQqdeJs/YUwFrb7xdAoGBAJhw\neJk6ogXM4hStAP0wpbWXpbiwiNufrXEF5BuVw8rfcOesxSyz6XfFgyI2pT8DAseM\nnQ3X1vJbVPufkaEtrNYTxKx3DTRFotkIZrl7m9YbVeuBtvmQzHOCPU8a55PxHwvu\nv/mP+8VQIAJLV4auWKDoXJLux9DIGpcP3UKq3RvvAoGATaNnk1RgXA+jEKgczu15\n0U0knWzgc5xzAUfoaAcg0H0pdIxHUYiA0Ad1IN0qYvq/i4UMzkf5pmk6ZIww/XmB\nbXQHQIyBuLMot/NMNqbCIbF7KC8OM6F4ubwA9fVD6qvgTcys/oOheA6fWBnreDE5\nLrvCXsYtWW4PL1EfvqCzFgk=\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-tg9bn@peduli-lindungi-id.iam.gserviceaccount.com",
+  "client_id": "107499528590127252566",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-tg9bn%40peduli-lindungi-id.iam.gserviceaccount.com"
+}

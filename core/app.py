@@ -1,6 +1,6 @@
-import base64
 import numpy as np
-import io
+import requests
+import urllib
 import os
 import tensorflow as tf
 from PIL import Image
@@ -8,20 +8,30 @@ from keras.preprocessing.image import img_to_array
 from flask import Flask, jsonify, request
 from flask.wrappers import Request, Response
 from os import getcwd
-
-from werkzeug.wrappers import response
+from firebase_admin import credentials, firestore, initialize_app
 
 app = Flask(__name__)
 
+# Initialize Firestore DB
+KEY_PATH = os.path.join(getcwd(), "core", "key.json")
+cred = credentials.Certificate(KEY_PATH)
+default_app = initialize_app(cred)
+db = firestore.client()
+history_ref = db.collection('history')
+
 
 def get_model(options):
-    global model
-    # Model saved with Keras model.save()
     if options == "covid":
+        # Model saved with Keras model.save()
         MODEL_PATH = os.path.join(getcwd(), "core", "keras_models", "covid_model.h5")
+
+        # Set label alphanumerically
+        label = ['covid', 'normal']
 
     # Load your trained model
     model = tf.keras.models.load_model(MODEL_PATH)
+
+    return model, label
 
 def preprocess_image(image, target_size, mode):
     '''
@@ -37,22 +47,52 @@ def preprocess_image(image, target_size, mode):
 
     return image
 
-@app.route("/predict/cxr/covid/", methods=["POST"])
+def url_to_image(url):
+    return Image.open(requests.get(url, stream=True).raw)
+
+def get_image_from_firestore(request):
+    history_id = request.json['id']
+    history = history_ref.document(history_id).get().to_dict()
+
+    image = url_to_image(history['image'])
+    return image
+
+def get_model_option_from_firestore(request):
+    option = []
+
+    history_id = request.json['id']
+    history = history_ref.document(history_id).get().to_dict()
+
+    for prediction in history['predictions']:
+        option.append(prediction['model'])
+
+    return option
+
+def save_prediction_to_firestore(json):
+    history_id = request.json['id']
+    history_ref.document(history_id).update(json)
+
+@app.route("/predict", methods=["POST"])
 def predict():
-    message = request.get_json(force=True)
-    encoded = message["image"]
-    decoded = base64.b64decode(encoded)
-    image = Image.open(io.BytesIO(decoded))
-    processed_image = preprocess_image(image, target_size=(150, 150), mode="L")
+    # get and preprocess image from firestore
+    image = get_image_from_firestore(request)
+    processed_image = preprocess_image(image, (150, 150), "L")
 
-    get_model("covid")
-    prediction = model.predict(processed_image).tolist()
+    # model prediction
+    for index, option in enumerate(get_model_option_from_firestore(request)):
+        model, label = get_model(option)
+        prediction = model.predict(processed_image).tolist()
 
-    response = {
-        "prediction": {
-            "Covid": prediction[0][0],
-            "Normal": prediction[0][1]
-        }
-    }
+        save_prediction_to_firestore({
+            "predictions" : {
+                str(index) : {
+                    "result" : {
+                        label[0]: prediction[0][0],
+                        label[1]: prediction[0][1]
+                    }
+                }
+            }
+        })
 
-    return jsonify(response)
+
+    return jsonify({"success": True}), 200
