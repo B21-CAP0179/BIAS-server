@@ -21,6 +21,9 @@ history_ref = db.collection('history')
 
 
 def get_model(options):
+    label = [True, False]
+    target_size = (1,1)
+    mode = "L"
     
     # Insert option here
     if options == "covid":
@@ -29,11 +32,19 @@ def get_model(options):
 
         # Set label alphanumerically
         label = ['covid', 'normal']
+        target_size = (150, 150)
+        mode = 'L'
+
+    elif options  == "pneumonia":
+        MODEL_PATH = os.path.join(getcwd(), "core", "keras_models", "pneumonia_model.h5")
+        label = ['normal', 'pneumonia']
+        target_size = (64, 64)
+        mode = "RGB"
 
     # Load your trained model
     model = tf.keras.models.load_model(MODEL_PATH)
 
-    return model, label
+    return model, label, target_size, mode
 
 def preprocess_image(image, target_size, mode):
     '''
@@ -73,11 +84,11 @@ def save_prediction_to_firestore(json):
 def predict():
     # get and preprocess image from firestore
     image = get_image_from_firestore(request)
-    processed_image = preprocess_image(image, (150, 150), "L")
 
     # model prediction
     for option in get_model_option_from_firestore(request):
-        model, label = get_model(option)
+        model, label, target_size, mode = get_model(option)
+        processed_image = preprocess_image(image, target_size, mode)
         prediction = model.predict(processed_image).tolist()
 
         save_prediction_to_firestore({
