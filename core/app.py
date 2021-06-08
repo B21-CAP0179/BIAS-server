@@ -21,6 +21,8 @@ history_ref = db.collection('history')
 
 
 def get_model(options):
+    
+    # Insert option here
     if options == "covid":
         # Model saved with Keras model.save()
         MODEL_PATH = os.path.join(getcwd(), "core", "keras_models", "covid_model.h5")
@@ -58,15 +60,10 @@ def get_image_from_firestore(request):
     return image
 
 def get_model_option_from_firestore(request):
-    option = []
-
     history_id = request.json['id']
     history = history_ref.document(history_id).get().to_dict()
 
-    for prediction in history['predictions']:
-        option.append(prediction['model'])
-
-    return option
+    return history['predictions']
 
 def save_prediction_to_firestore(json):
     history_id = request.json['id']
@@ -79,17 +76,15 @@ def predict():
     processed_image = preprocess_image(image, (150, 150), "L")
 
     # model prediction
-    for index, option in enumerate(get_model_option_from_firestore(request)):
+    for option in get_model_option_from_firestore(request):
         model, label = get_model(option)
         prediction = model.predict(processed_image).tolist()
 
         save_prediction_to_firestore({
-            "predictions" : {
-                str(index) : {
-                    "result" : {
-                        label[0]: prediction[0][0],
-                        label[1]: prediction[0][1]
-                    }
+            "result" : {
+                option : {
+                    label[0]: prediction[0][0],
+                    label[1]: prediction[0][1]
                 }
             }
         })
