@@ -7,7 +7,7 @@ PeduliLindungi-ID is a mobile application that can detect whether there is any d
 - Coding Language: Kotlin
 - minimal SDK version : 21
 
-- dependencies {
+dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.5.0'
@@ -24,7 +24,7 @@ PeduliLindungi-ID is a mobile application that can detect whether there is any d
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation 'com.github.bumptech.glide:glide:4.12.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
-  }
+}
 
 
 How to replicate our application:
