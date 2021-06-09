@@ -34,8 +34,9 @@ How to replicate our application:
 4. Preparing dockerfile to build docker image 
 5. Preparing container registry for docker image 
 6. Pushing docker image to Container registry
-7. Preparing Cloud Run for deploying image from container registry
-8. Preparing Cloud build for automatic deployment so we can use continues deployment
-9. Preparing Firestore/Firebase for the database
-10. Design the Android Application
-11. Connect Firestore/Firebase to the Android Studio
+7. Granting permission to Cloud Run through IAM & Admin in GCP
+8. Preparing Cloud Run for deploying image from container registry
+9. Preparing Cloud build for automatic deployment so we can use continues deployment
+10. Preparing Firestore/Firebase for the database
+11. Design the Android Application
+12. Connect Firestore/Firebase to the Android Studio
