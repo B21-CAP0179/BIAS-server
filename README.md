@@ -5,6 +5,9 @@ Capstone Project Bangkit Program 2021
 PeduliLindungi-ID is a mobile application that can detect whether there is any disease within a patient body through images.
 
 
+
+
+
 How to replicate our application:
 1. Build model exploration so we can use it for the web server
 2. Downloading and saving the model use for the prediction image
@@ -15,5 +18,5 @@ How to replicate our application:
 7. Preparing Cloud Run for deploying image from container registry
 8. Preparing Cloud build for automatic deployment so we can use continues deployment
 9. Preparing Firestore/Firebase for the database
-10. Design the android application
-11. Connect Firestore/Firebase to the android application that has been made
+10. Design the Android Application
+11. Connect Firestore/Firebase to the Android Studio
