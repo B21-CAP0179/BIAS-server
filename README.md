@@ -4,10 +4,10 @@ Capstone Project Bangkit Program 2021
 
 PeduliLindungi-ID is a mobile application that can detect whether there is any disease within a patient body through images.
 
-- Coding Language: Kotlin
+- Coding Language : Kotlin
 - minimal SDK version : 21
 
-dependencies {
+-dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.5.0'
