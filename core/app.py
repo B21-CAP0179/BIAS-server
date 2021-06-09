@@ -86,20 +86,27 @@ def predict():
     image = get_image_from_firestore(request)
 
     # model prediction
-    for option in get_model_option_from_firestore(request):
+    model_options = get_model_option_from_firestore(request)
+    output = {
+        "result" : {},
+        "status" : ""
+    }
+
+    for option in model_options:
+        output["result"][option] = {}
+
+    for option in model_options:
         model, label, target_size, mode = get_model(option)
         processed_image = preprocess_image(image, target_size, mode)
         prediction = model.predict(processed_image).tolist()
 
-        save_prediction_to_firestore({
-            "result" : {
-                option : {
-                    label[0]: prediction[0][0],
-                    label[1]: prediction[0][1]
-                }
-            },
-            "status" : "done"
-        })
+        output["result"][option] = {
+            label[0]: prediction[0][0],
+            label[1]: prediction[0][1]
+        }
+
+    output["status"] = "done"
+    save_prediction_to_firestore(output)
 
 
     return jsonify({"success": True}), 200
