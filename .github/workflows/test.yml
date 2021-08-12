@@ -1,0 +1,25 @@
+name: Automated Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: 
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 16.3.0
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.3.0
+      - run: npm ci
+      - run: npm test
